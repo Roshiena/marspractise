@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class ProfilePage : CommonDriver
+    public class ProfilePage 
     {
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(),'Share Skill')]")]
@@ -27,7 +27,7 @@ namespace Onlylearning.Pages
 
         }
 
-        public void NavigateManageSkills(IWebDriver driver)
+        public void NavigateManageListings(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
             manageListings.Click();

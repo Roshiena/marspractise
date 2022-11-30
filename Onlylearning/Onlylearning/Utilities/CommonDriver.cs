@@ -48,8 +48,7 @@ namespace Onlylearning.Utilities
             LoginPage loginPageObj = new LoginPage();
             loginPageObj.LoginStep(driver);
 
-            ProfilePage profilePageObj = new ProfilePage();
-            profilePageObj.NavigateShareSkills(driver);
+            
 
 
 

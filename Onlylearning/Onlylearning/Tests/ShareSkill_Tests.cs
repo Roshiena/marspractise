@@ -10,16 +10,21 @@ using System.Threading.Tasks;
 namespace Onlylearning.Tests
 {
     [TestFixture]
+
+    
     public class ShareSkill_Tests : CommonDriver
     {
         ProfilePage profilePageObj = new ProfilePage();
         ShareSkillsPage skillsPageObj = new ShareSkillsPage();
-        ManageListings ListingsPageObj = new ManageListings();
+        ListingsPage listingsPageObj = new ListingsPage();
 
+        //[SetUp]
 
         [Test, Order(1)]
         public void CreateSkillTest()
         {
+            
+            profilePageObj.NavigateShareSkills(driver);
             skillsPageObj.CreateSkills(driver);
         }
 
@@ -27,8 +32,8 @@ namespace Onlylearning.Tests
         public void ViewSkillsTest()
         {
             
-            profilePageObj.NavigateManageSkills(driver);
-            ListingsPageObj.ViewSkills(driver);
+            profilePageObj.NavigateManageListings(driver);
+            listingsPageObj.ViewSkills(driver);
            
 
         }
@@ -37,16 +42,26 @@ namespace Onlylearning.Tests
 
         public void EditSkillsTest()
         {
-            profilePageObj.NavigateManageSkills(driver);
-            ListingsPageObj.NagivateToEdit(driver);
+            profilePageObj.NavigateManageListings(driver);
+            listingsPageObj.NagivateToEdit(driver);
             skillsPageObj.EditSkills(driver);
         }
 
         [Test, Order(4)]
+
+        public void ViewEditedSkillTest()
+        {
+            profilePageObj.NavigateManageListings(driver);
+            listingsPageObj.ViewEditedSkills(driver);
+
+        }
+
+
+        [Test, Order(5)]
         public void DeleteSkillsTest()
         {
-            profilePageObj.NavigateManageSkills(driver);
-            ListingsPageObj.DeleteSkills(driver);
+            profilePageObj.NavigateManageListings(driver);
+            listingsPageObj.DeleteSkills(driver);
         }
             
     }

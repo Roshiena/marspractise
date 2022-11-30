@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class ManageListings : CommonDriver
+    public class ListingsPage 
     {
         [FindsBy(How = How.XPath, Using = "//tbody/tr[1]/td[8]/div[1]/button[1]")]
         public IWebElement viewIcon;
@@ -24,11 +24,14 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Ace English Grammar')]")]
         public IWebElement checkTitle;
 
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Conversational English')]")]
+        public IWebElement editedTitle;
+
         [FindsBy(How = How.XPath, Using = "//body/div[2]/div[1]/div[3]/button[2]")]
         public IWebElement alertYes;
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/div[3]/button[2]")]
-        public IWebElement deleteCofirm;
+        public IWebElement deleteConfirm;
 
 
         public void ViewSkills(IWebDriver driver)
@@ -36,7 +39,7 @@ namespace Onlylearning.Pages
             Thread.Sleep(2000);
             PageFactory.InitElements(driver, this);
             viewIcon.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Assert.That(checkTitle.Text == "Ace English Grammar", "Expected title and Actual title do no match");
         }
 
@@ -46,6 +49,16 @@ namespace Onlylearning.Pages
             PageFactory.InitElements(driver, this);
             editIcon.Click();
             Thread.Sleep(2000);
+        
+        }
+
+        public void ViewEditedSkills(IWebDriver driver)
+        {
+            Thread.Sleep(2000);
+            PageFactory.InitElements(driver, this);
+            viewIcon.Click();
+            Thread.Sleep(1000);
+            Assert.That(editedTitle.Text == "Conversational English", "Expected title and Actual title do no match");
         }
 
         public void DeleteSkills(IWebDriver driver)
@@ -53,7 +66,7 @@ namespace Onlylearning.Pages
             Thread.Sleep(2000);
             PageFactory.InitElements(driver, this);
             deleteIcon.Click();
-            deleteCofirm.Click();
+            deleteConfirm.Click();
             Thread.Sleep(2000);
 
         }

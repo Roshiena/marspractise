@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class LoginPage : CommonDriver
+    public class LoginPage 
     {
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"home\"]/div/div/div[1]/div/a")]
