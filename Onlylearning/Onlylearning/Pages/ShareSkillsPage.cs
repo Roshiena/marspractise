@@ -98,6 +98,7 @@ namespace Onlylearning.Pages
 
         public void CreateSkills(IWebDriver driver)
         {
+            Thread.Sleep(2000);
             PageFactory.InitElements(driver, this);
             //identify the title text box and add the title
             string title = ExcelReader.ReadData(1, "Title");
@@ -179,10 +180,11 @@ namespace Onlylearning.Pages
             Thread.Sleep(2000);
 
 
-            //IWebElement viewCreatedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
-            //viewCreatedSkills.Click();
-            //IWebElement checkCreatedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Ace English Grammar')]"));
-            //Assert.That(checkCreatedTitle.Text == "Ace English Grammar", "Expected Title and Edited Title do not match");
+            IWebElement viewCreatedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
+            viewCreatedSkills.Click();
+            Thread.Sleep(2000);
+            IWebElement checkCreatedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Ace English Grammar')]"));
+            Assert.That(checkCreatedTitle.Text == "Ace English Grammar", "Expected Title and Edited Title do not match");
 
         }
         public void EditSkills(IWebDriver driver)
@@ -206,12 +208,13 @@ namespace Onlylearning.Pages
             creditAmount.SendKeys("5");
 
             saveButton.Click();
+            
             Thread.Sleep(2000);
-
-            //IWebElement viewEditedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
-            //viewEditedSkills.Click();
-            //IWebElement checkEditedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Conversational English')]"));
-            //Assert.That(checkEditedTitle.Text == "Conversational English", "Expected Title and Edited Title do not match");
+            IWebElement viewEditedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
+            viewEditedSkills.Click();
+            Thread.Sleep(2000);
+            IWebElement checkEditedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Conversational English')]"));
+            Assert.That(checkEditedTitle.Text == "Conversational English", "Expected Title and Edited Title do not match");
         }
     }
 }

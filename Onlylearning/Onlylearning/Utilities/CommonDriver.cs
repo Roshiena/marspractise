@@ -35,7 +35,7 @@ namespace Onlylearning.Utilities
             stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
             ExcelReader.ReadDataTable(stream, "SkillsProfile");
 
-            var htmlreporter = new ExtentHtmlReporter(@"C:\Users\roshi\OneDrive\Documents\ExtentReport");
+            var htmlreporter = new ExtentHtmlReporter(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\ExtentReports");
             extentreportobj = new ExtentReports();
             extentreportobj.AttachReporter(htmlreporter);
 
@@ -48,11 +48,8 @@ namespace Onlylearning.Utilities
             LoginPage loginPageObj = new LoginPage();
             loginPageObj.LoginStep(driver);
 
-            
-
-
-
         }
+
         [OneTimeTearDown]
         public void CloseTestRun()
         {

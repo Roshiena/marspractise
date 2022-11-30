@@ -33,15 +33,18 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/div[3]/button[2]")]
         public IWebElement deleteConfirm;
 
+        [FindsBy(How = How.XPath, Using = "//h3[contains(text(),'You do not have any service listings!')]")]
+        public IWebElement deletedTitle;
 
-        public void ViewSkills(IWebDriver driver)
-        {
-            Thread.Sleep(2000);
-            PageFactory.InitElements(driver, this);
-            viewIcon.Click();
-            Thread.Sleep(1000);
-            Assert.That(checkTitle.Text == "Ace English Grammar", "Expected title and Actual title do no match");
-        }
+
+        //public void ViewSkills(IWebDriver driver)
+        //{
+        //    Thread.Sleep(2000);
+        //    PageFactory.InitElements(driver, this);
+        //    viewIcon.Click();
+        //    Thread.Sleep(1000);
+        //    Assert.That(checkTitle.Text == "Ace English Grammar", "Expected title and Actual title do no match");
+        //}
 
         public void NagivateToEdit(IWebDriver driver)
         {
@@ -52,14 +55,14 @@ namespace Onlylearning.Pages
         
         }
 
-        public void ViewEditedSkills(IWebDriver driver)
-        {
-            Thread.Sleep(2000);
-            PageFactory.InitElements(driver, this);
-            viewIcon.Click();
-            Thread.Sleep(1000);
-            Assert.That(editedTitle.Text == "Conversational English", "Expected title and Actual title do no match");
-        }
+        //public void ViewEditedSkills(IWebDriver driver)
+        //{
+        //    Thread.Sleep(2000);
+        //    PageFactory.InitElements(driver, this);
+        //    viewIcon.Click();
+        //    Thread.Sleep(1000);
+        //    Assert.That(editedTitle.Text == "Conversational English", "Expected title and Actual title do no match");
+        //}
 
         public void DeleteSkills(IWebDriver driver)
         {
@@ -68,6 +71,7 @@ namespace Onlylearning.Pages
             deleteIcon.Click();
             deleteConfirm.Click();
             Thread.Sleep(2000);
+            Assert.That(deletedTitle.Text == "You do not have any service listings!", "Record is not deleted");
 
         }
 
