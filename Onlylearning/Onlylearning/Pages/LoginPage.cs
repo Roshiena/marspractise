@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class LoginPage 
-    {
+     public class LoginPage
+    { 
+
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"home\"]/div/div/div[1]/div/a")]
         public IWebElement signIn;
@@ -29,8 +30,8 @@ namespace Onlylearning.Pages
 
         public void LoginStep(IWebDriver driver)
         {
-            driver.Navigate().GoToUrl("http://localhost:5000/");
             PageFactory.InitElements(driver, this);
+            driver.Navigate().GoToUrl("http://localhost:5000/");
             signIn.Click();
             userName.SendKeys(LoginCredential.string1);
             passWord.SendKeys(LoginCredential.string2);
@@ -39,5 +40,5 @@ namespace Onlylearning.Pages
 
         }
 
-    }
+     }
 } 

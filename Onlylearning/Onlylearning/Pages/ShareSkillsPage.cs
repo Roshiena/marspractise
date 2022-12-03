@@ -13,13 +13,14 @@ using MongoDB.Driver;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 using NUnit.Framework;
+using System.Xml.Linq;
+using System.IO;
 
 namespace Onlylearning.Pages
 {
     public class ShareSkillsPage 
     {
-
-
+      
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")]
         public IWebElement titleTextBox;
 
@@ -100,7 +101,7 @@ namespace Onlylearning.Pages
         {
             Thread.Sleep(2000);
             PageFactory.InitElements(driver, this);
-            //identify the title text box and add the title
+           
             string title = ExcelReader.ReadData(1, "Title");
             titleTextBox.SendKeys(title);
             
@@ -157,8 +158,6 @@ namespace Onlylearning.Pages
             string endTimeOn = ExcelReader.ReadData(1, "End Time");
             endTime.SendKeys(endTimeOn);
 
-            //string creditAmt = ExcelReader.ReadData(1, "Credit Amount");
-            //creditAmount.SendKeys(creditAmt);
 
             skillExchange.Click();
             string skillExchangeTag = ExcelReader.ReadData(1, "SkillsExchange");
@@ -177,42 +176,53 @@ namespace Onlylearning.Pages
             Thread.Sleep(2000);
 
             saveButton.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
 
 
             IWebElement viewCreatedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
             viewCreatedSkills.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             IWebElement checkCreatedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Ace English Grammar')]"));
             Assert.That(checkCreatedTitle.Text == "Ace English Grammar", "Expected Title and Edited Title do not match");
 
         }
+
+        
+            
+
         public void EditSkills(IWebDriver driver)
         {
            
             PageFactory.InitElements(driver, this);
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             titleTextBox.Clear();
-            string title1 = ExcelReader.ReadData(2, "Title");
-            titleTextBox.SendKeys(title1);
+            string editedTitle1 = ExcelReader.ReadData(2, "Title");
+            titleTextBox.SendKeys(editedTitle1);
 
             descriptionTextbox.Clear();
-            string description1 = ExcelReader.ReadData(2, "Description");
-            descriptionTextbox.SendKeys(description1);
+            string editedDescription1 = ExcelReader.ReadData(2, "Description");
+            descriptionTextbox.SendKeys(editedDescription1);
 
-            string tag2 = ExcelReader.ReadData(2, "Tags");
-            tagName.SendKeys(tag2);
+            string editedTag2 = ExcelReader.ReadData(1, "Tags");
+            tagName.SendKeys(editedTag2);
             tagName.SendKeys(Keys.Enter);
 
+            string editedStartTime = ExcelReader.ReadData(2, "Start Time");
+            startTime.SendKeys(editedStartTime);
+
+            string editedendTime = ExcelReader.ReadData(2, "End Time");
+            endTime.SendKeys(editedendTime);
+
             selectCredit.Click();
-            creditAmount.SendKeys("5");
+            string creditAmt = ExcelReader.ReadData(2, "Credit Amount");
+            creditAmount.SendKeys(creditAmt);
 
             saveButton.Click();
             
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             IWebElement viewEditedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
             viewEditedSkills.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             IWebElement checkEditedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Conversational English')]"));
             Assert.That(checkEditedTitle.Text == "Conversational English", "Expected Title and Edited Title do not match");
         }

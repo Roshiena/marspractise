@@ -70,7 +70,7 @@ namespace Onlylearning.Pages
             PageFactory.InitElements(driver, this);
             deleteIcon.Click();
             deleteConfirm.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             Assert.That(deletedTitle.Text == "You do not have any service listings!", "Record is not deleted");
 
         }

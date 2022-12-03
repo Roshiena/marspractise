@@ -16,14 +16,18 @@ namespace Onlylearning.Utilities
 {
     public class CommonDriver
     {
-        
+
         //ExtentTest test;
         //ExtentHtmlReporter htmlreporter;
+
         public static IWebDriver driver;
         public static ExtentReports extentreportobj;
         public static ExtentHtmlReporter htmlReporter;
         public static ExtentTest test;
         public static FileStream stream;
+       
+
+
 
         [OneTimeSetUp]
 
@@ -35,6 +39,13 @@ namespace Onlylearning.Utilities
             stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
             ExcelReader.ReadDataTable(stream, "SkillsProfile");
 
+            //string fileName1 = @"C:\Users\roshi\OneDrive\Documents\EditedSkills.xlsx";
+            //stream = File.Open(fileName1, FileMode.Open, FileAccess.Read);
+            //ExcelReader.ReadDataTable(stream, "EditedSkills");
+
+
+
+
             var htmlreporter = new ExtentHtmlReporter(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\ExtentReports");
             extentreportobj = new ExtentReports();
             extentreportobj.AttachReporter(htmlreporter);
@@ -43,10 +54,20 @@ namespace Onlylearning.Utilities
             driver = new ChromeDriver();
             //Maximize the chrome window
             driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("http://localhost:5000/");
 
-            //Login page object initialisation
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginStep(driver);
+
+            if (LoginCredential.string1 == "testingroro5@gmail.com")
+            {
+                LoginPage loginPageObj = new LoginPage();
+                loginPageObj.LoginStep(driver);
+            }
+            else
+            {
+                SignupPage signupPageObj = new SignupPage();
+                signupPageObj.SignUp(driver);
+            }
+
 
         }
 
@@ -54,7 +75,7 @@ namespace Onlylearning.Utilities
         public void CloseTestRun()
         {
             extentreportobj.Flush();
-           // driver.Quit();
+            driver.Quit();
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Input
 {
-    class ExcelReader
+    public class ExcelReader
     {
         static List<Datacollection> dataCol = new List<Datacollection>();
         public class Datacollection
@@ -57,6 +57,8 @@ namespace Onlylearning.Input
             return resultTable;
         }
 
+        
+
         public static string ReadData(int rowNumber, string columnName)
         {
             try
@@ -77,7 +79,7 @@ namespace Onlylearning.Input
             catch (Exception e)
             {
 
-                Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
+                Console.WriteLine("Exception occurred in ExcelReader Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
                 return null;
             }
         }

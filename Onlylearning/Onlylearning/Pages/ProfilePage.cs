@@ -11,8 +11,11 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class ProfilePage 
+    public class ProfilePage
     {
+
+
+
 
         [FindsBy(How = How.XPath, Using = "//a[contains(text(),'Share Skill')]")]
         public IWebElement shareSkillsButton;

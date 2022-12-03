@@ -21,7 +21,7 @@ namespace Onlylearning.Tests
         ShareSkillsPage skillsPageObj = new ShareSkillsPage();
         ListingsPage listingsPageObj = new ListingsPage();
 
-        //[SetUp]
+       //[SetUp]
 
         [Test, Order(1)]
         public void CreateSkillTest()
