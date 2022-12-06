@@ -56,14 +56,14 @@ namespace Onlylearning.Utilities
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://localhost:5000/");
 
-
             if (LoginCredential.string1 == "testingroro5@gmail.com")
             {
                 LoginPage loginPageObj = new LoginPage();
                 loginPageObj.LoginStep(driver);
             }
             else
-            {
+            {   
+              
                 SignupPage signupPageObj = new SignupPage();
                 signupPageObj.SignUp(driver);
             }

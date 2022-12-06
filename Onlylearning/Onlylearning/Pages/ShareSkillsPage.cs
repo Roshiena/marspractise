@@ -60,6 +60,9 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.Name, Using = "endDate")]
         public IWebElement endDate;
 
+        [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[2]/div[1]")]
+        public IWebElement daysAvail; 
+
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[5]/div[1]/div[1]/input[1]")]
         public IWebElement selectWednesday;
 
@@ -207,11 +210,47 @@ namespace Onlylearning.Pages
             tagName.SendKeys(editedTag2);
             tagName.SendKeys(Keys.Enter);
 
-            string editedStartTime = ExcelReader.ReadData(2, "Start Time");
-            startTime.SendKeys(editedStartTime);
+            
+ 
 
-            string editedendTime = ExcelReader.ReadData(2, "End Time");
-            endTime.SendKeys(editedendTime);
+            startDate.SendKeys(Input.ExcelReader.ReadData(2, "Start Date"));
+            startDate.Click();
+            endDate.SendKeys(Input.ExcelReader.ReadData(2, "End Date"));
+            endDate.Click();
+
+            for (int i = 2; i < 9; i++)
+            {
+
+
+                for (int j = 2; j < 9; j++)
+                {
+                    IWebElement startTime = CommonDriver.driver.FindElement(By.XPath("//div[" + i + "]/div[2]/input"));
+                    
+                    IWebElement endTime = CommonDriver.driver.FindElement(By.XPath("//div[" + j + "]/div[3]/input"));
+                   
+                    if (i == 2 && j == 2)
+                    {
+                        CommonDriver.driver.FindElement(By.XPath("//div[contains(@class,'twelve wide column')]//div[2]//div[1]//div[1]//input[1]")).Click();
+                        startTime.SendKeys("0230PM");
+                        startTime.SendKeys(Keys.Tab);
+                        endTime.SendKeys("0630PM");
+                    }
+                    if (i == 3 && j == 3)
+                    {
+                        CommonDriver.driver.FindElement(By.XPath("//div[3]//div[1]//div[1]//input[1]")).Click();
+                        startTime.SendKeys("0930AM");
+                        endTime.SendKeys("0630PM");
+                    }
+
+                }
+            }
+
+
+            //string editedStartTime = ExcelReader.ReadData(2, "Start Time");
+            //startTime.SendKeys(editedStartTime);
+
+            //string editedendTime = ExcelReader.ReadData(2, "End Time");
+            //endTime.SendKeys(editedendTime);
 
             selectCredit.Click();
             string creditAmt = ExcelReader.ReadData(2, "Credit Amount");

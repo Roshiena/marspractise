@@ -1,4 +1,5 @@
-﻿using Onlylearning.Input;
+﻿using NUnit.Framework;
+using Onlylearning.Input;
 using Onlylearning.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -11,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-     public class LoginPage
-    { 
+    public class LoginPage
+    {
 
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"home\"]/div/div/div[1]/div/a")]
@@ -32,13 +33,27 @@ namespace Onlylearning.Pages
         {
             PageFactory.InitElements(driver, this);
             driver.Navigate().GoToUrl("http://localhost:5000/");
-            signIn.Click();
-            userName.SendKeys(LoginCredential.string1);
-            passWord.SendKeys(LoginCredential.string2);
-            loginButton.Click();
-            Wait.WaitToBeClickable(driver, "XPath", "//a[contains(text(),'Share Skill')]", 10);
+
+            try
+            {
+                signIn.Click();
+                userName.SendKeys(LoginCredential.string1);
+                passWord.SendKeys(LoginCredential.string2);
+                loginButton.Click();
+                Wait.WaitToBeClickable(driver, "XPath", "//a[contains(text(),'Share Skill')]", 10);
+            }
+            catch (Exception ex)
+            {
+                Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
+                screenShot.SaveAsFile(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\Screenshots" + DateTime.Now.ToString("dd-MM-yyyy HH mm ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
+                Assert.Fail("Unable to launch Mars portal", ex.Message);
+            }
+
+
 
         }
+    }
+}
 
-     }
-} 
+
+
