@@ -70,6 +70,12 @@ namespace Onlylearning.Utilities
 
 
         }
+        public static void Wait()
+        {
+            // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
+        }
 
         [OneTimeTearDown]
         public void CloseTestRun()

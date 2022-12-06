@@ -48,10 +48,10 @@ namespace Onlylearning.Pages
 
         public void NagivateToEdit(IWebDriver driver)
         {
-            Thread.Sleep(2000);
+            CommonDriver.Wait();
             PageFactory.InitElements(driver, this);
             editIcon.Click();
-            Thread.Sleep(2000);
+            
         
         }
 
@@ -66,11 +66,11 @@ namespace Onlylearning.Pages
 
         public void DeleteSkills(IWebDriver driver)
         {
-            Thread.Sleep(2000);
+            CommonDriver.Wait();
             PageFactory.InitElements(driver, this);
             deleteIcon.Click();
             deleteConfirm.Click();
-            Thread.Sleep(5000);
+            
             Assert.That(deletedTitle.Text == "You do not have any service listings!", "Record is not deleted");
 
         }

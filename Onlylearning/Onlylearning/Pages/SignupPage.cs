@@ -51,7 +51,7 @@ namespace Onlylearning.Pages
             public void SignUp(IWebDriver driver)
             {
 
-                 Thread.Sleep(2000);
+                 
                  PageFactory.InitElements(driver, this);
                  ExcelReader.ReadDataTable(stream, "Signup");
                  joinButton.Click();
