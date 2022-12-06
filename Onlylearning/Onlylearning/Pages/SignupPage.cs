@@ -5,6 +5,7 @@ using OpenQA.Selenium.Chrome;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class SignupPage
+    public class SignupPage : CommonDriver
     {
            
 
@@ -23,7 +24,7 @@ namespace Onlylearning.Pages
             [FindsBy(How = How.XPath, Using = "//body/div[2]/div[1]/div[1]/form[1]/div[1]/input[1]")]
             public IWebElement firstNamebox;
 
-            [FindsBy(How = How.XPath, Using = "input[placeholder='Last name']")]
+            [FindsBy(How = How.XPath, Using = "//body/div[2]/div[1]/div[1]/form[1]/div[2]/input[1]")]
             public IWebElement lastNamebox;
 
             [FindsBy(How = How.XPath, Using = "//input[@placeholder='Email address']")]
@@ -52,15 +53,14 @@ namespace Onlylearning.Pages
 
                  Thread.Sleep(2000);
                  PageFactory.InitElements(driver, this);
+                 ExcelReader.ReadDataTable(stream, "Signup");
                  joinButton.Click();
 
                  firstNamebox.Click();
                  string firstName = ExcelReader.ReadData(1, "Firstname");
                  firstNamebox.SendKeys(firstName);
 
-                 lastNamebox.Click();
-                 string lastName = ExcelReader.ReadData(1, "Lastname");
-                 lastNamebox.SendKeys(lastName);
+                 lastNamebox.SendKeys("Roro");
 
                  emailId.Click();
                  string emailAddress = ExcelReader.ReadData(1, "Email");

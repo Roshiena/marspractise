@@ -18,7 +18,7 @@ using System.IO;
 
 namespace Onlylearning.Pages
 {
-    public class ShareSkillsPage 
+    public class ShareSkillsPage : CommonDriver
     {
       
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")]
@@ -104,7 +104,8 @@ namespace Onlylearning.Pages
         {
             Thread.Sleep(2000);
             PageFactory.InitElements(driver, this);
-           
+
+
             string title = ExcelReader.ReadData(1, "Title");
             titleTextBox.SendKeys(title);
             
@@ -199,6 +200,7 @@ namespace Onlylearning.Pages
             PageFactory.InitElements(driver, this);
             Thread.Sleep(3000);
             titleTextBox.Clear();
+
             string editedTitle1 = ExcelReader.ReadData(2, "Title");
             titleTextBox.SendKeys(editedTitle1);
 
