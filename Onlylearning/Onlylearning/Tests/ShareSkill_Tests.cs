@@ -1,7 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using NUnit.Framework;
 using Onlylearning.Pages;
-using Onlylearning.Screenshots;
 using Onlylearning.Utilities;
 using OpenQA.Selenium;
 using System;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Onlylearning.Tests
 {
@@ -31,14 +31,14 @@ namespace Onlylearning.Tests
                 test = extentreportobj.CreateTest("CreateSkills", "Testing Create Skills");
                 profilePageObj.NavigateShareSkills(driver);
                 skillsPageObj.CreateSkills(driver);
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.CreateSkillScreenShot(driver);
                 test.Log(Status.Info, "Skills created successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
             {
-               ClickScreenshot.ScreenShot(driver);
-               test.Log(Status.Fail, "Test failed");
+               ClickScreenshot.CreateSkillScreenShot(driver);
+                test.Log(Status.Fail, "Test failed");
                Assert.Fail("Create Skills Test failed", ex.Message);
                 throw;
 
@@ -66,13 +66,13 @@ namespace Onlylearning.Tests
                 profilePageObj.NavigateManageListings(driver);
                 listingsPageObj.NagivateToEdit(driver);
                 skillsPageObj.EditSkills(driver);
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.EditSkillScreenShot(driver);
                 test.Log(Status.Info, "Skills edited successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
             {
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.EditSkillScreenShot(driver);
                 test.Log(Status.Fail, "Test passed");
                 Assert.Fail("Edit Skills Test failed", ex.Message);
                 throw;
@@ -98,14 +98,14 @@ namespace Onlylearning.Tests
                 test = extentreportobj.CreateTest("DeleteSkills", "Testing Delete Skills");
                 profilePageObj.NavigateManageListings(driver);
                 listingsPageObj.DeleteSkills(driver);
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.DeleteSkillScreenShot(driver);
                 test.Log(Status.Info, "Skills deleted successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
 
             {
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.DeleteSkillScreenShot(driver);
                 test.Log(Status.Fail, "Test failed");
                 Assert.Fail("Delete Skills Test failed", ex.Message);
                 throw;

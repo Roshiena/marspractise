@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="ExtentReports\" />
+    <Folder Include="Screenshots\" />
   </ItemGroup>
 
 </Project>

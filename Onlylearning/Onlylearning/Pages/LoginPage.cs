@@ -1,7 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using NUnit.Framework;
 using Onlylearning.Input;
-using Onlylearning.Screenshots;
 using Onlylearning.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -48,7 +47,7 @@ namespace Onlylearning.Pages
             {
                 CommonDriver.test = CommonDriver.extentreportobj.CreateTest("Login Test", "Testing Login");
                 CommonDriver.test.Log(Status.Fail, "Test failed");
-                ClickScreenshot.ScreenShot(driver);
+                ClickScreenshot.LoginScreenShot(driver);
                 Assert.Fail("Unable to launch Mars portal", ex.Message);
                 throw;
             }
