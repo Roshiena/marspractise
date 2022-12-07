@@ -50,6 +50,7 @@ namespace Onlylearning.Pages
                 CommonDriver.test.Log(Status.Fail, "Test failed");
                 ClickScreenshot.ScreenShot(driver);
                 Assert.Fail("Unable to launch Mars portal", ex.Message);
+                throw;
             }
 
 

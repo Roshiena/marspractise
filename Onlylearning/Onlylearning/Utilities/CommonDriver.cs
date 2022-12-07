@@ -38,6 +38,7 @@ namespace Onlylearning.Utilities
             //open file and returns as stream
             stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
             ExcelReader.ReadDataTable(stream, "SkillsProfile");
+            
 
             //string fileName1 = @"C:\Users\roshi\OneDrive\Documents\EditedSkills.xlsx";
             //stream = File.Open(fileName1, FileMode.Open, FileAccess.Read);
@@ -81,7 +82,9 @@ namespace Onlylearning.Utilities
         public void CloseTestRun()
         {
             extentreportobj.Flush();
+            
             driver.Quit();
+            
         }
     }
 }

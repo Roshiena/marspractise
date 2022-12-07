@@ -14,7 +14,7 @@ namespace Onlylearning.Screenshots
 
             Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
             screenShot.SaveAsFile(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\Screenshots" + DateTime.Now.ToString("dd-MM-yyyy HH mm ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
-
+            
         }
 
     }
