@@ -170,8 +170,9 @@ namespace Onlylearning.Pages
             skillExchange.SendKeys(Keys.Enter);
 
             workSample.Click();
+
             
-            using (Process exeProcess = Process.Start(@"C:\Users\roshi\OneDrive\Documents\WorkSample.exe"))
+            using (Process exeProcess = Process.Start(@"C:\Users\roshi\OneDrive\Documents\Worksamplee.exe"))
             {
                 exeProcess.WaitForExit();
             }

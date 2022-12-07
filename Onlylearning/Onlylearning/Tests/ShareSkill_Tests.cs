@@ -32,6 +32,7 @@ namespace Onlylearning.Tests
             ClickScreenshot.ScreenShot(driver);
             test.Log(Status.Info, "Skills created successfully");
             test.Log(Status.Pass, "Test passed");
+           
         }
 
         //[Test, Order(2)]

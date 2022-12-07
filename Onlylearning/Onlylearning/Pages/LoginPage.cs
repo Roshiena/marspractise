@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using Onlylearning.Input;
+using Onlylearning.Screenshots;
 using Onlylearning.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -44,8 +46,9 @@ namespace Onlylearning.Pages
             }
             catch (Exception ex)
             {
-                Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
-                screenShot.SaveAsFile(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\Screenshots" + DateTime.Now.ToString("dd-MM-yyyy HH mm ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
+                CommonDriver.test = CommonDriver.extentreportobj.CreateTest("Login Test", "Testing Login");
+                CommonDriver.test.Log(Status.Fail, "Test failed");
+                ClickScreenshot.ScreenShot(driver);
                 Assert.Fail("Unable to launch Mars portal", ex.Message);
             }
 
