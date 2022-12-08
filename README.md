@@ -1,1 +1,1 @@
-# marspractise
+# MarsCompetition
