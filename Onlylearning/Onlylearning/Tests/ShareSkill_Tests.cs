@@ -21,6 +21,8 @@ namespace Onlylearning.Tests
         ShareSkillsPage skillsPageObj = new ShareSkillsPage();
         ListingsPage listingsPageObj = new ListingsPage();
 
+       
+
        //[SetUp]
 
         [Test, Order(1)]
@@ -29,16 +31,16 @@ namespace Onlylearning.Tests
             try
             {
                 test = extentreportobj.CreateTest("CreateSkills", "Testing Create Skills");
-                profilePageObj.NavigateShareSkills(driver);
-                skillsPageObj.CreateSkills(driver);
-                ClickScreenshot.CreateSkillScreenShot(driver);
+                profilePageObj.NavigateShareSkills();
+                skillsPageObj.CreateSkills();
+                ClickScreenshot.CreateSkillScreenShot();
                 test.Log(Status.Info, "Skills created successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
             {
-               ClickScreenshot.CreateSkillScreenShot(driver);
-                test.Log(Status.Fail, "Test failed");
+               ClickScreenshot.CreateSkillScreenShot();
+               test.Log(Status.Fail, "Test failed");
                Assert.Fail("Create Skills Test failed", ex.Message);
                 throw;
 
@@ -63,16 +65,16 @@ namespace Onlylearning.Tests
             try
             {
                 test = extentreportobj.CreateTest("EditSkills", "Testing Edit Skills");
-                profilePageObj.NavigateManageListings(driver);
-                listingsPageObj.NagivateToEdit(driver);
-                skillsPageObj.EditSkills(driver);
-                ClickScreenshot.EditSkillScreenShot(driver);
+                profilePageObj.NavigateManageListings();
+                listingsPageObj.NagivateToEdit();
+                skillsPageObj.EditSkills();
+                ClickScreenshot.EditSkillScreenShot();
                 test.Log(Status.Info, "Skills edited successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
             {
-                ClickScreenshot.EditSkillScreenShot(driver);
+                ClickScreenshot.EditSkillScreenShot();
                 test.Log(Status.Fail, "Test passed");
                 Assert.Fail("Edit Skills Test failed", ex.Message);
                 throw;
@@ -96,16 +98,16 @@ namespace Onlylearning.Tests
             try
             {
                 test = extentreportobj.CreateTest("DeleteSkills", "Testing Delete Skills");
-                profilePageObj.NavigateManageListings(driver);
-                listingsPageObj.DeleteSkills(driver);
-                ClickScreenshot.DeleteSkillScreenShot(driver);
+                profilePageObj.NavigateManageListings();
+                listingsPageObj.DeleteSkills();
+                ClickScreenshot.DeleteSkillScreenShot();
                 test.Log(Status.Info, "Skills deleted successfully");
                 test.Log(Status.Pass, "Test passed");
             }
             catch (Exception ex)
 
             {
-                ClickScreenshot.DeleteSkillScreenShot(driver);
+                ClickScreenshot.DeleteSkillScreenShot();
                 test.Log(Status.Fail, "Test failed");
                 Assert.Fail("Delete Skills Test failed", ex.Message);
                 throw;

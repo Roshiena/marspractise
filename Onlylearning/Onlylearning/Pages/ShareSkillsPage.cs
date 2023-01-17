@@ -18,9 +18,9 @@ using System.IO;
 
 namespace Onlylearning.Pages
 {
-    public class ShareSkillsPage
+    public class ShareSkillsPage : CommonDriver
     {
-      
+
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")]
         public IWebElement titleTextBox;
 
@@ -37,7 +37,7 @@ namespace Onlylearning.Pages
         public IWebElement tagName;
 
         //Select the Service type - hourly service 
-           
+
         [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input")]
         private IWebElement hourlyServiceType;
 
@@ -57,11 +57,11 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.Name, Using = "startDate")]
         public IWebElement startDate;
 
-        [FindsBy(How = How.Name, Using = "endDate")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"service-listing-section\"]/div[2]/div/form/div[7]/div[2]/div/div[1]/div[4]/input")]
         public IWebElement endDate;
 
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[2]/div[1]")]
-        public IWebElement daysAvail; 
+        public IWebElement daysAvail;
 
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[7]/div[2]/div[1]/div[5]/div[1]/div[1]/input[1]")]
         public IWebElement selectWednesday;
@@ -79,9 +79,9 @@ namespace Onlylearning.Pages
         public IWebElement selectCredit;
 
         [FindsBy(How = How.XPath, Using = "//body/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[8]/div[4]/div[1]/div[1]/input[1]")]
-        public  IWebElement creditAmount;
+        public IWebElement creditAmount;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input")] 
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input")]
         public IWebElement skillExchange;
 
 
@@ -97,12 +97,21 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         public IWebElement saveButton;
 
+        [FindsBy(How = How.XPath, Using = "//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]")]
+        public IWebElement viewCreatedSkills;
 
+        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Ace English Grammar')]")]
+        public IWebElement checkCreatedTitle;
 
+        [FindsBy(How = How.XPath, Using = "//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]")]
+        public IWebElement viewEditedSkills;
 
-        public void CreateSkills(IWebDriver driver)
+        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Conversational English')]")]
+        public IWebElement checkEditedTitle;
+
+        public void CreateSkills()
         {
-            CommonDriver.Wait();
+            Waits();
             PageFactory.InitElements(driver, this);
 
 
@@ -151,9 +160,6 @@ namespace Onlylearning.Pages
             string startDateOn = ExcelReader.ReadData(1, "Start Date");
             startDate.SendKeys(startDateOn);
 
-            string endDateOn = ExcelReader.ReadData(1, "End Date");
-            endDate.SendKeys(endDateOn);
-
             selectWednesday.Click();
 
             string startTimeOn = ExcelReader.ReadData(1, "Start Time");
@@ -184,10 +190,10 @@ namespace Onlylearning.Pages
             
 
 
-            IWebElement viewCreatedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
+            
             viewCreatedSkills.Click();
         
-            IWebElement checkCreatedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Ace English Grammar')]"));
+            
             Assert.That(checkCreatedTitle.Text == "Ace English Grammar", "Expected Title and Edited Title do not match");
 
         }
@@ -195,9 +201,9 @@ namespace Onlylearning.Pages
         
             
 
-        public void EditSkills(IWebDriver driver)
+        public void EditSkills()
         {
-            CommonDriver.Wait();
+            Waits();
             PageFactory.InitElements(driver, this);
        
 
@@ -214,9 +220,9 @@ namespace Onlylearning.Pages
             tagName.SendKeys(editedTag2);
             tagName.SendKeys(Keys.Enter);
 
-            
- 
 
+
+            
             startDate.SendKeys(Input.ExcelReader.ReadData(2, "Start Date"));
             startDate.Click();
             endDate.SendKeys(Input.ExcelReader.ReadData(2, "End Date"));
@@ -263,10 +269,10 @@ namespace Onlylearning.Pages
             saveButton.Click();
             
             
-            IWebElement viewEditedSkills = driver.FindElement(By.XPath("//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]"));
+            
             viewEditedSkills.Click();
            
-            IWebElement checkEditedTitle = driver.FindElement(By.XPath("//span[contains(text(),'Conversational English')]"));
+            
             Assert.That(checkEditedTitle.Text == "Conversational English", "Expected Title and Edited Title do not match");
         }
     }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class ProfilePage
+    public class ProfilePage : CommonDriver
     {
 
 
@@ -23,14 +23,14 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "//a[contains(text(),'Manage Listings')]")]
         public IWebElement manageListings;
 
-        public void NavigateShareSkills(IWebDriver driver)
+        public void NavigateShareSkills()
         {
             PageFactory.InitElements(driver, this);
             shareSkillsButton.Click();
 
         }
 
-        public void NavigateManageListings(IWebDriver driver)
+        public void NavigateManageListings()
         {
             PageFactory.InitElements(driver, this);
             manageListings.Click();

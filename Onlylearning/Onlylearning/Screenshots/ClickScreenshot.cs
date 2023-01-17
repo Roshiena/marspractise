@@ -4,29 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Onlylearning.Utilities;
 
-namespace Onlylearning.Utilities
+namespace Only.learning.Screenshots
 {
-    public class ClickScreenshot : CommonDriver
+    public class ClickScreenshot
     {
-
-        public static void LoginScreenShot()
-        {
-
-            Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
-            screenShot.SaveAsFile(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\Login" + DateTime.Now.ToString("dd-MM-yyyy HH mm ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
-
-        }
-
-        public static void CreateSkillScreenShot()
+        public static void CreateSkillScreenShot(IWebDriver driver)
         {
 
             Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
             screenShot.SaveAsFile(@"C:\Users\roshi\OneDrive\Documents\Marsrough\marspractise\Onlylearning\Onlylearning\CreateSkills" + DateTime.Now.ToString("dd-MM-yyyy HH mm ss") + ".jpeg", ScreenshotImageFormat.Jpeg);
-
+            
         }
 
-        public static void EditSkillScreenShot()
+        public static void EditSkillScreenShot(IWebDriver driver)
         {
 
             Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();
@@ -34,7 +26,7 @@ namespace Onlylearning.Utilities
 
         }
 
-        public static void DeleteSkillScreenShot()
+        public static void DeleteSkillScreenShot(IWebDriver driver)
         {
 
             Screenshot screenShot = ((ITakesScreenshot)driver).GetScreenshot();

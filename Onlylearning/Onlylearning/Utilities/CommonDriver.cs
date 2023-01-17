@@ -34,15 +34,10 @@ namespace Onlylearning.Utilities
         public void LoginFunction()
         {
 
-            string fileName = @"C:\Users\roshi\OneDrive\Documents\SkillParticulars.xlsx";
+            string fileName = @"C:\Users\roshi\OneDrive\Documents\SkillParticulars.xlsx"; 
             //open file and returns as stream
             stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
             ExcelReader.ReadDataTable(stream, "SkillsProfile");
-            
-
-            //string fileName1 = @"C:\Users\roshi\OneDrive\Documents\EditedSkills.xlsx";
-            //stream = File.Open(fileName1, FileMode.Open, FileAccess.Read);
-            //ExcelReader.ReadDataTable(stream, "EditedSkills");
 
 
 
@@ -60,18 +55,19 @@ namespace Onlylearning.Utilities
             if (LoginCredential.string1 == "testingroro5@gmail.com")
             {
                 LoginPage loginPageObj = new LoginPage();
-                loginPageObj.LoginStep(driver);
+                loginPageObj.LoginStep();
+                
             }
             else
             {   
               
                 SignupPage signupPageObj = new SignupPage();
-                signupPageObj.SignUp(driver);
+                signupPageObj.SignUp();
             }
 
 
         }
-        public static void Wait()
+        public static void Waits()
         {
             // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);

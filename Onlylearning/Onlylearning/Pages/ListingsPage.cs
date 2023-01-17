@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class ListingsPage 
+    public class ListingsPage : CommonDriver
     {
         [FindsBy(How = How.XPath, Using = "//tbody/tr[1]/td[8]/div[1]/button[1]")]
         public IWebElement viewIcon;
@@ -46,9 +46,9 @@ namespace Onlylearning.Pages
         //    Assert.That(checkTitle.Text == "Ace English Grammar", "Expected title and Actual title do no match");
         //}
 
-        public void NagivateToEdit(IWebDriver driver)
+        public void NagivateToEdit()
         {
-            CommonDriver.Wait();
+            Waits();
             PageFactory.InitElements(driver, this);
             editIcon.Click();
             
@@ -64,9 +64,9 @@ namespace Onlylearning.Pages
         //    Assert.That(editedTitle.Text == "Conversational English", "Expected title and Actual title do no match");
         //}
 
-        public void DeleteSkills(IWebDriver driver)
+        public void DeleteSkills()
         {
-            CommonDriver.Wait();
+            Waits();
             PageFactory.InitElements(driver, this);
             deleteIcon.Click();
             deleteConfirm.Click();

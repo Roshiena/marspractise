@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Pages
 {
-    public class LoginPage
+    public class LoginPage : CommonDriver
     {
 
 
@@ -30,7 +30,7 @@ namespace Onlylearning.Pages
         public IWebElement loginButton;
 
 
-        public void LoginStep(IWebDriver driver)
+        public void LoginStep()
         {
             PageFactory.InitElements(driver, this);
             driver.Navigate().GoToUrl("http://localhost:5000/");
@@ -45,9 +45,9 @@ namespace Onlylearning.Pages
             }
             catch (Exception ex)
             {
-                CommonDriver.test = CommonDriver.extentreportobj.CreateTest("Login Test", "Testing Login");
-                CommonDriver.test.Log(Status.Fail, "Test failed");
-                ClickScreenshot.LoginScreenShot(driver);
+                test = extentreportobj.CreateTest("Login Test", "Testing Login");
+                test.Log(Status.Fail, "Test failed");
+                ClickScreenshot.LoginScreenShot();
                 Assert.Fail("Unable to launch Mars portal", ex.Message);
                 throw;
             }

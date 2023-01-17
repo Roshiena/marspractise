@@ -48,7 +48,7 @@ namespace Onlylearning.Pages
 
 
 
-            public void SignUp(IWebDriver driver)
+            public void SignUp()
             {
 
                  
