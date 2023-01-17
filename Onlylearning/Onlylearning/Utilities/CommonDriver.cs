@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Onlylearning.Utilities
 {
+    [SetUpFixture]
     public class CommonDriver
     {
 
