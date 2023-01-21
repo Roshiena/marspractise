@@ -97,7 +97,7 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         public IWebElement saveButton;
 
-        [FindsBy(How = How.XPath, Using = "//tbody/tr[1]/td[8]/div[1]/button[1]/i[1]")]
+        [FindsBy(How = How.XPath, Using = "//i[@class='eye icon']")]
         public IWebElement viewCreatedSkills;
 
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Ace English Grammar')]")]
@@ -109,6 +109,78 @@ namespace Onlylearning.Pages
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Conversational English')]")]
         public IWebElement checkEditedTitle;
 
+        public void createSelectElementAndSelectByText(IWebElement webElement, int rowNumber, String name)
+        {
+            webElement.Click();
+            SelectElement selectCategory = new SelectElement(webElement);
+            selectCategory.SelectByText(ExcelReader.ReadData(rowNumber, name));
+        }
+
+        public void StartDate(IWebElement webElement, int rowNumber, String name)
+        {
+            string startDateOn = ExcelReader.ReadData(rowNumber, name);
+            startDate.SendKeys(startDateOn);
+
+            webElement.Click();
+        }
+        public void TimingsOn(IWebElement webElement, int rowNumber, String name)
+        { 
+
+            string startTimeOn = ExcelReader.ReadData(rowNumber, name);
+            webElement.SendKeys(startTimeOn);
+
+            string endTimeOn = ExcelReader.ReadData(rowNumber, name);
+            webElement.SendKeys(endTimeOn);
+
+        }
+
+        public void ServiceType(IWebElement webElement, int rowNumber, string name)
+        {
+            string serviceType = ExcelReader.ReadData(rowNumber, name);
+            if (serviceType.Equals("Hourly basis service"))
+            {
+                webElement.Click();
+            }
+            else if (serviceType.Equals("One-off service"))
+            {
+                webElement.Click();
+            }
+        }
+
+        public void LocationType(IWebElement webElement, int rowNumber, string name)
+        {
+            string locationType = ((ExcelReader.ReadData(rowNumber, name)));
+            if (locationType.Equals("On-site"))
+            {
+                webElement.Click();
+            }
+            else if (locationType.Equals("Online"))
+            {
+                webElement.Click();
+            }
+        }
+
+        public void WorkSample()
+        {
+            workSample.Click();
+
+
+            using (Process exeProcess = Process.Start(@"C:\Users\roshi\OneDrive\Documents\Worksamplee.exe"))
+            {
+                exeProcess.WaitForExit();
+            }
+
+        }
+
+        public void SkillsExchange(IWebElement webElement, int rowNumber, string name)
+        {
+            webElement.Click();
+            string skillExchangeTag = ExcelReader.ReadData(rowNumber, name);
+
+            webElement.SendKeys(skillExchangeTag);
+            webElement.SendKeys(Keys.Enter);
+        }
+
         public void CreateSkills()
         {
             Waits();
@@ -117,95 +189,85 @@ namespace Onlylearning.Pages
 
             string title = ExcelReader.ReadData(1, "Title");
             titleTextBox.SendKeys(title);
-            
+
 
             //Identify the description text box and add the description
             descriptionTextbox.Click();
             string description = ExcelReader.ReadData(1, "Description");
             descriptionTextbox.SendKeys(description);
 
-            categoryDropdown.Click();
-            SelectElement selectCategory = new SelectElement(categoryDropdown);
-            selectCategory.SelectByText(ExcelReader.ReadData(1, "Category"));
+            createSelectElementAndSelectByText(categoryDropdown, 1, "Category");
+            createSelectElementAndSelectByText(subCategory, 1, "SubCategory");
 
-            subCategory.Click();
-            SelectElement selectSubcategory = new SelectElement(subCategory);
-            selectSubcategory.SelectByText(ExcelReader.ReadData(1, "SubCategory"));
 
             string tag = ExcelReader.ReadData(1, "Tags");
             tagName.SendKeys(tag);
             tagName.SendKeys(Keys.Enter);
 
-            string serviceType = ExcelReader.ReadData(1, "ServiceType");
-            if (serviceType.Equals("Hourly basis service"))
-            {
-                hourlyServiceType.Click();
-            }
-            else if (serviceType.Equals("One-off service"))
-            {
-                oneOffServiceType.Click();
-            }
+            ServiceType(oneOffServiceType, 1, "ServiceType");
+            LocationType(onlineLocation, 1, "LocationType");
+            StartDate(selectWednesday, 1, "Start Date");
+            TimingsOn(startTime, 1, "Start Time");
+            TimingsOn(endTime, 1, "End Time");
+            SkillsExchange(skillExchange, 1 , "SkillsExchange");
 
-            
-            string locationType = ((ExcelReader.ReadData(1, "LocationType")));
-            if (locationType.Equals("On-site"))
-            {
-                onSiteLocation.Click();
-            }
-            else if (locationType.Equals("Online"))
-            {
-                onlineLocation.Click();
-            }
-
-            string startDateOn = ExcelReader.ReadData(1, "Start Date");
-            startDate.SendKeys(startDateOn);
-
-            selectWednesday.Click();
-
-            string startTimeOn = ExcelReader.ReadData(1, "Start Time");
-            startTime.SendKeys(startTimeOn);
-
-            string endTimeOn = ExcelReader.ReadData(1, "End Time");
-            endTime.SendKeys(endTimeOn);
-
-
-            skillExchange.Click();
-            string skillExchangeTag = ExcelReader.ReadData(1, "SkillsExchange");
-
-            skillExchange.SendKeys(skillExchangeTag);
-            skillExchange.SendKeys(Keys.Enter);
-
-            workSample.Click();
-
-            
-            using (Process exeProcess = Process.Start(@"C:\Users\roshi\OneDrive\Documents\Worksamplee.exe"))
-            {
-                exeProcess.WaitForExit();
-            }
-
+            WorkSample();
             selectActive.Click();
-            
-
             saveButton.Click();
-            
-
-
-            
-            viewCreatedSkills.Click();
-        
-            
-            Assert.That(checkCreatedTitle.Text == "Ace English Grammar", "Expected Title and Edited Title do not match");
 
         }
+    
 
-        
-            
+        public string CheckCreatedSkill()
+
+        {
+           
+            viewCreatedSkills.Click();
+            return checkCreatedTitle.Text;
+        }
+
+
+        public void DateLoop()
+        {
+            startDate.SendKeys(Input.ExcelReader.ReadData(2, "Start Date"));
+            startDate.Click();
+            endDate.SendKeys(Input.ExcelReader.ReadData(2, "End Date"));
+            endDate.Click();
+
+            for (int i = 2; i < 9; i++)
+            {
+
+
+                for (int j = 2; j < 9; j++)
+                {
+                    IWebElement startTime = driver.FindElement(By.XPath("//div[" + i + "]/div[2]/input"));
+
+                    IWebElement endTime = driver.FindElement(By.XPath("//div[" + j + "]/div[3]/input"));
+
+                    if (i == 2 && j == 2)
+                    {
+                        driver.FindElement(By.XPath("//div[contains(@class,'twelve wide column')]//div[2]//div[1]//div[1]//input[1]")).Click();
+                        startTime.SendKeys("0230PM");
+                        startTime.SendKeys(Keys.Tab);
+                        endTime.SendKeys("0630PM");
+                    }
+                    if (i == 3 && j == 3)
+                    {
+                        driver.FindElement(By.XPath("//div[3]//div[1]//div[1]//input[1]")).Click();
+                        startTime.SendKeys("0930AM");
+                        endTime.SendKeys("0630PM");
+                    }
+
+                }
+            }
+        }
+
 
         public void EditSkills()
         {
             Waits();
             PageFactory.InitElements(driver, this);
-       
+
 
             titleTextBox.Clear();
 
@@ -220,60 +282,27 @@ namespace Onlylearning.Pages
             tagName.SendKeys(editedTag2);
             tagName.SendKeys(Keys.Enter);
 
-
-
-            
-            startDate.SendKeys(Input.ExcelReader.ReadData(2, "Start Date"));
-            startDate.Click();
-            endDate.SendKeys(Input.ExcelReader.ReadData(2, "End Date"));
-            endDate.Click();
-
-            for (int i = 2; i < 9; i++)
-            {
-
-
-                for (int j = 2; j < 9; j++)
-                {
-                    IWebElement startTime = CommonDriver.driver.FindElement(By.XPath("//div[" + i + "]/div[2]/input"));
-                    
-                    IWebElement endTime = CommonDriver.driver.FindElement(By.XPath("//div[" + j + "]/div[3]/input"));
-                   
-                    if (i == 2 && j == 2)
-                    {
-                        CommonDriver.driver.FindElement(By.XPath("//div[contains(@class,'twelve wide column')]//div[2]//div[1]//div[1]//input[1]")).Click();
-                        startTime.SendKeys("0230PM");
-                        startTime.SendKeys(Keys.Tab);
-                        endTime.SendKeys("0630PM");
-                    }
-                    if (i == 3 && j == 3)
-                    {
-                        CommonDriver.driver.FindElement(By.XPath("//div[3]//div[1]//div[1]//input[1]")).Click();
-                        startTime.SendKeys("0930AM");
-                        endTime.SendKeys("0630PM");
-                    }
-
-                }
-            }
-
-
-            //string editedStartTime = ExcelReader.ReadData(2, "Start Time");
-            //startTime.SendKeys(editedStartTime);
-
-            //string editedendTime = ExcelReader.ReadData(2, "End Time");
-            //endTime.SendKeys(editedendTime);
-
+            DateLoop();
             selectCredit.Click();
             string creditAmt = ExcelReader.ReadData(2, "Credit Amount");
             creditAmount.SendKeys(creditAmt);
 
             saveButton.Click();
-            
-            
-            
+        
+
+        }
+
+        public string CheckEditedSkills()
+        {
             viewEditedSkills.Click();
+            return checkEditedTitle.Text;
+        }
+            
+            
+            
+            
            
             
-            Assert.That(checkEditedTitle.Text == "Conversational English", "Expected Title and Edited Title do not match");
-        }
+            
     }
 }

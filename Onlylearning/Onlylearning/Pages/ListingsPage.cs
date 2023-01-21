@@ -37,14 +37,7 @@ namespace Onlylearning.Pages
         public IWebElement deletedTitle;
 
 
-        //public void ViewSkills(IWebDriver driver)
-        //{
-        //    Thread.Sleep(2000);
-        //    PageFactory.InitElements(driver, this);
-        //    viewIcon.Click();
-        //    Thread.Sleep(1000);
-        //    Assert.That(checkTitle.Text == "Ace English Grammar", "Expected title and Actual title do no match");
-        //}
+      
 
         public void NagivateToEdit()
         {
@@ -55,15 +48,7 @@ namespace Onlylearning.Pages
         
         }
 
-        //public void ViewEditedSkills(IWebDriver driver)
-        //{
-        //    Thread.Sleep(2000);
-        //    PageFactory.InitElements(driver, this);
-        //    viewIcon.Click();
-        //    Thread.Sleep(1000);
-        //    Assert.That(editedTitle.Text == "Conversational English", "Expected title and Actual title do no match");
-        //}
-
+      
         public void DeleteSkills()
         {
             Waits();
@@ -71,8 +56,11 @@ namespace Onlylearning.Pages
             deleteIcon.Click();
             deleteConfirm.Click();
             
-            Assert.That(deletedTitle.Text == "You do not have any service listings!", "Record is not deleted");
+        }
 
+        public string CheckDeletedSkill()
+        {
+            return deletedTitle.Text;
         }
 
     }

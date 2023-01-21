@@ -34,6 +34,8 @@ namespace Onlylearning.Tests
                 profilePageObj.NavigateShareSkills();
                 skillsPageObj.CreateSkills();
                 ClickScreenshot.CreateSkillScreenShot();
+                string createdTitle = skillsPageObj.CheckCreatedSkill();
+                Assert.That(createdTitle == "Ace English Grammar", "Expected Title and Edited Title do not match");
                 test.Log(Status.Info, "Skills created successfully");
                 test.Log(Status.Pass, "Test passed");
             }
@@ -41,22 +43,13 @@ namespace Onlylearning.Tests
             {
                ClickScreenshot.CreateSkillScreenShot();
                test.Log(Status.Fail, "Test failed");
-               Assert.Fail("Create Skills Test failed", ex.Message);
-                throw;
+               throw;
 
             }
            
         }
 
-        //[Test, Order(2)]
-        //public void ViewSkillsTest()
-        //{
-            
-        //    profilePageObj.NavigateManageListings(driver);
-        //    listingsPageObj.ViewSkills(driver);
-           
-
-        //}
+    
 
         [Test, Order(2)]
 
@@ -69,6 +62,8 @@ namespace Onlylearning.Tests
                 listingsPageObj.NagivateToEdit();
                 skillsPageObj.EditSkills();
                 ClickScreenshot.EditSkillScreenShot();
+                string editedTitle = skillsPageObj.CheckEditedSkills();
+                Assert.That(editedTitle == "Conversational English", "Expected Title and Edited Title do not match");
                 test.Log(Status.Info, "Skills edited successfully");
                 test.Log(Status.Pass, "Test passed");
             }
@@ -76,20 +71,11 @@ namespace Onlylearning.Tests
             {
                 ClickScreenshot.EditSkillScreenShot();
                 test.Log(Status.Fail, "Test passed");
-                Assert.Fail("Edit Skills Test failed", ex.Message);
                 throw;
 
             }
         }
 
-        //[Test, Order(4)]
-
-        //public void ViewEditedSkillTest()
-        //{
-        //    profilePageObj.NavigateManageListings(driver);
-        //    listingsPageObj.ViewEditedSkills(driver);
-
-        //}
 
 
         [Test, Order(3)]
@@ -101,6 +87,8 @@ namespace Onlylearning.Tests
                 profilePageObj.NavigateManageListings();
                 listingsPageObj.DeleteSkills();
                 ClickScreenshot.DeleteSkillScreenShot();
+                string deletedTitle = listingsPageObj.CheckDeletedSkill();
+                Assert.That(deletedTitle == "You do not have any service listings!", "Record is not deleted");
                 test.Log(Status.Info, "Skills deleted successfully");
                 test.Log(Status.Pass, "Test passed");
             }
@@ -109,7 +97,7 @@ namespace Onlylearning.Tests
             {
                 ClickScreenshot.DeleteSkillScreenShot();
                 test.Log(Status.Fail, "Test failed");
-                Assert.Fail("Delete Skills Test failed", ex.Message);
+                
                 throw;
             }
         }
