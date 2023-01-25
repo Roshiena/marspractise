@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Onlylearning.Utilities
 {
@@ -39,6 +40,7 @@ namespace Onlylearning.Utilities
             //open file and returns as stream
             stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
             ExcelReader.ReadDataTable(stream, "SkillsProfile");
+            string userName = LoginCredential.string1;
 
 
 
@@ -51,9 +53,12 @@ namespace Onlylearning.Utilities
             driver = new ChromeDriver();
             //Maximize the chrome window
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://localhost:5000/");
+            driver.Navigate().GoToUrl(LoginCredential.string3);
 
-            if (LoginCredential.string1 == "testingroro5@gmail.com")
+            
+            
+
+            if (userName == LoginCredential.string1)
             {
                 LoginPage loginPageObj = new LoginPage();
                 loginPageObj.LoginStep();

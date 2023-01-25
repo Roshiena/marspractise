@@ -33,7 +33,7 @@ namespace Onlylearning.Pages
         public void LoginStep()
         {
             PageFactory.InitElements(driver, this);
-            driver.Navigate().GoToUrl("http://localhost:5000/");
+            driver.Navigate().GoToUrl(LoginCredential.string3);
 
             try
             {

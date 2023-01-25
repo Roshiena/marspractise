@@ -77,5 +77,14 @@ namespace Onlylearning.Input {
                 return ResourceManager.GetString("string2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:5000/.
+        /// </summary>
+        internal static string string3 {
+            get {
+                return ResourceManager.GetString("string3", resourceCulture);
+            }
+        }
     }
 }
